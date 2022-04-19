@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".HelpActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/user_help_Toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+            app:titleTextColor="@color/colorAccent" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <ListView
+        android:id="@+id/faqListView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/spinner"
+        android:paddingLeft="10dp"
+        android:gravity="center|left"
+        android:textSize="16sp"
+        android:layout_margin="8dp"
+        android:padding="8dp"
+        android:visibility="gone"
+        android:text="Q. How to change Password\nSolution:\n         1. Connect to Wi-Fi\n
+        2. Open Google Chrome\n
+        3. Enter 192.168.1.1\n
+        4. > Username: admin \n
+        \t\t\t> Password: Kirat@123\n\n
+        Enter verification Code\n
+        5. Go to Network\n         6. Go to WLAN\n
+        7. Change the Wi-Fi Name in SSID\n
+        8. Go to WLAN Security\n
+        9. Change the Passphrase Key \n              Password of Wi-Fi and Apply Changes\n
+        10. Check Show Active Wireless Clients"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</LinearLayout>

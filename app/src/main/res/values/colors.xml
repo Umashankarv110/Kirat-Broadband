@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#1c37b3</color>
+    <color name="colorPrimaryDark">#1c37b3</color>
+    <color name="colorAccent">#FFFFFFFF</color>
+    <color name="colorlightBlue">#19a3df</color>
+    <color name="transparent">#00000000</color>
+    <color name="colorRed">#ff0000</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <color name="successGreen">#32710A</color>
+    <color name="recyclerViewBg">#d6d6d6</color>
+    <color name="colorWhite">#ffffff</color>
+</resources>
