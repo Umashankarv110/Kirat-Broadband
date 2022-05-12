@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="umashankar.kiratbroadbanduser">
+    package="com.umashankar.kiratbroadbanduser">
 
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -18,33 +18,40 @@
         android:theme="@style/Theme.KiratBroadband"
         android:usesCleartextTraffic="true">
         <activity
-            android:name="com.umashankar.kiratbroadbanduser.AuthOptionsActivity"
+            android:name=".AuthRailWireActivity"
             android:exported="false" />
         <activity
-            android:name="com.umashankar.kiratbroadbanduser.AboutUsActivity"
+            android:name=".AuthNewCustomerActivity"
             android:exported="false" />
         <activity
-            android:name="com.umashankar.kiratbroadbanduser.CustomerHomeActivity"
+            android:name=".AuthOptionsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AboutUsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CustomerHomeActivity"
             android:exported="false"
             android:label="@string/title_activity_customer_home"
             android:theme="@style/Theme.KiratBroadband.NoActionBar" />
-        <activity android:name="com.umashankar.kiratbroadbanduser.getCamera" />
-        <activity android:name="com.umashankar.kiratbroadbanduser.UpiPayment" />
-        <activity android:name="com.umashankar.kiratbroadbanduser.FAQ_AnswerActivity" />
-        <activity android:name="com.umashankar.kiratbroadbanduser.LoginActivity" />
+        <activity android:name=".getCamera" />
+        <activity android:name=".UpiPayment" />
+        <activity android:name=".FAQ_AnswerActivity" />
+        <activity android:name=".AuthBSNLActivity" />
         <activity
-            android:name="com.umashankar.kiratbroadbanduser.TempCustomer.DocumentCollectionActivity"
+            android:name=".TempCustomer.DocumentCollectionActivity"
             android:exported="true" />
-        <activity android:name="com.umashankar.kiratbroadbanduser.TempCustomer.NewCustomerActivity" />
-        <activity android:name="com.umashankar.kiratbroadbanduser.TempCustomer.DashboardTempUserActivity" />
-        <activity android:name="com.umashankar.kiratbroadbanduser.RegistrationActivity" />
-        <activity android:name="com.umashankar.kiratbroadbanduser.HelpActivity" />
-        <activity android:name="com.umashankar.kiratbroadbanduser.ContactUsActivity" />
-        <activity android:name="com.umashankar.kiratbroadbanduser.NotificationActivity" />
-        <activity android:name="com.umashankar.kiratbroadbanduser.ProfileActivity" />
-        <activity android:name="com.umashankar.kiratbroadbanduser.ViewAllReportActivity" />
+        <activity android:name=".TempCustomer.PersonalDetailsActivity" />
+        <activity android:name=".TempCustomer.DashboardTempUserActivity" />
+        <activity android:name=".RegistrationActivity" />
+        <activity android:name=".HelpActivity" />
+        <activity android:name=".ContactUsActivity" />
+        <activity android:name=".NotificationActivity" />
+        <activity android:name=".ProfileActivity" />
+        <activity android:name=".PaymentActivity" />
+        <activity android:name=".ViewAllReportActivity" />
         <activity
-            android:name="com.umashankar.kiratbroadbanduser.SplashActivity"
+            android:name=".SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -54,7 +61,7 @@
         </activity>
 
         <service
-            android:name="com.umashankar.kiratbroadbanduser.HelperClass.MyFirebaseServices"
+            android:name=".HelperClass.MyFirebaseServices"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
@@ -67,13 +74,39 @@
 
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="umashankar.kiratbroadbanduser.provider"
+            android:authorities=".provider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
-    </application>
+
+        <activity
+            android:name=".TempCustomer.RailWirePaymentActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <data
+                    android:host="rzp.io"
+                    android:scheme="io.rzp" />
+            </intent-filter>
+        </activity>
+
+    <receiver
+        android:name="com.razorpay.RzpTokenReceiver"
+        android:exported="true">
+        <intent-filter>
+            <action android:name="rzp.device_token.share" />
+        </intent-filter>
+    </receiver>
+
+    <meta-data
+        android:name="com.razorpay.ApiKey"
+        android:exported="true"
+        android:value="rzp_live_0zK5Wp6XB5A8Kj" />
+
+</application>
 
 </manifest>

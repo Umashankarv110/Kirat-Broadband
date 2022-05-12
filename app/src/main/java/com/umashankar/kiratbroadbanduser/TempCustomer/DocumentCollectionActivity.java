@@ -294,22 +294,34 @@ public class DocumentCollectionActivity extends AppCompatActivity {
                                         d1.show();
                                         btnCancel.setVisibility(View.GONE);
 
-                                        txtMsg1.setText("Your Documents has been Submitted successfully. Kindly Proceed towards security payment of ₹"+secureDeposit+" via Paytm/PhonePe/Google Pay to 9896389883 or Deposit Cash.\n\n" +
-                                                "आपके दस्तावेज़ सफलतापूर्वक सबमिट कर दिए गए हैं। कृपया पेटीएम/फोनपे/गूगल पे के माध्यम से 9896389883 या जमा नकद के माध्यम से ₹"+secureDeposit+" के सुरक्षा भुगतान के लिए आगे बढ़ें।");
-
-                                        btnOk.setOnClickListener(new View.OnClickListener() {
-                                            @Override
-                                            public void onClick(View v) {
-                                                String stringNodeCopied= "9896389883";
-                                                ClipboardManager clipboard = (android.content.ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
-                                                ClipData clip = android.content.ClipData.newPlainText("Copied", stringNodeCopied);
-                                                clipboard.setPrimaryClip(clip);
-                                                Toast.makeText(getBaseContext(), stringNodeCopied+"\nCopied to clipboard!", Toast.LENGTH_SHORT).show();
-                                                d1.dismiss();
-                                                startActivity(new Intent(getApplicationContext(), DashboardTempUserActivity.class));
-                                                finish();
-                                            }
-                                        });
+                                        if (customers.getConnectionFor().equalsIgnoreCase("bsnl")){
+                                            txtMsg1.setText("Your Documents has been Submitted successfully. Kindly Proceed towards security payment of ₹"+secureDeposit+" via Paytm/PhonePe/Google Pay to 9896389883 or Deposit Cash.\n\n" +
+                                                    "आपके दस्तावेज़ सफलतापूर्वक सबमिट कर दिए गए हैं। कृपया पेटीएम/फोनपे/गूगल पे के माध्यम से 9896389883 या जमा नकद के माध्यम से ₹"+secureDeposit+" के सुरक्षा भुगतान के लिए आगे बढ़ें।");
+                                            btnOk.setOnClickListener(new View.OnClickListener() {
+                                                @Override
+                                                public void onClick(View v) {
+                                                    String stringNodeCopied= "9896389883";
+                                                    ClipboardManager clipboard = (android.content.ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+                                                    ClipData clip = android.content.ClipData.newPlainText("Copied", stringNodeCopied);
+                                                    clipboard.setPrimaryClip(clip);
+                                                    Toast.makeText(getBaseContext(), stringNodeCopied+"\nCopied to clipboard!", Toast.LENGTH_SHORT).show();
+                                                    d1.dismiss();
+                                                    startActivity(new Intent(getApplicationContext(), DashboardTempUserActivity.class));
+                                                    finish();
+                                                }
+                                            });
+                                        }if (customers.getConnectionFor().equalsIgnoreCase("railwire")){
+                                            txtMsg1.setText("Your Documents have been submitted successfully. Kindly Proceed toward Recharge.\n\n" +
+                                                    "आपके दस्तावेज़ सफलतापूर्वक सबमिट कर दिए गए हैं. कृपया रिचार्ज की ओर बढ़ें।");
+                                            btnOk.setOnClickListener(new View.OnClickListener() {
+                                                @Override
+                                                public void onClick(View v) {
+                                                    d1.dismiss();
+                                                    startActivity(new Intent(getApplicationContext(), RailWirePaymentActivity.class));
+                                                    finish();
+                                                }
+                                            });
+                                        }
                                     } else {
                                         progressDialog.dismiss();
                                         Toast.makeText(DocumentCollectionActivity.this, "Something went wrong.. Try Again", Toast.LENGTH_SHORT).show();
@@ -655,7 +667,7 @@ public class DocumentCollectionActivity extends AppCompatActivity {
             if(imageFlag == 3) {
                 docCollected = "Collected";
                 docImage.setImageBitmap(bMapRotate);
-                otherDoc_b64img= Base64.encodeToString(b, Base64.DEFAULT);
+                Base64.encodeToString(b, Base64.DEFAULT);
                 Log.i("otherDoc", otherDoc_b64img);
                 PdfPathb64img = "";
                 docImage.setVisibility(View.VISIBLE);

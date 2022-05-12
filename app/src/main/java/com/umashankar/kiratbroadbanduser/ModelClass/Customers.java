@@ -3,8 +3,8 @@ package com.umashankar.kiratbroadbanduser.ModelClass;
 public class Customers {
 
     int customerId,locationId,isRequired,numberChoice,isTrash,isActive,isJoining;
-    String name,mobile,email,landline,password,address,timestamp,oltIp;
-    String bbPlan, fixedMonthlyCharges, finalAmountRound, wkgStatus, llInstallDate;
+    String name,mobile,email,landline,password,address,timestamp;
+    String bbPlan, fixedMonthlyCharges, finalAmountRound, wkgStatus, llInstallDate, loginPin, connectionFor;
 
     public Customers() {
     }
@@ -23,6 +23,13 @@ public class Customers {
         this.mobile = mobile;
         this.landline = landline;
     }
+    public Customers(int customerId, String name, String mobile, String loginPin, String connectionFor) {
+        this.customerId = customerId;
+        this.name = name;
+        this.mobile = mobile;
+        this.loginPin = loginPin;
+        this.connectionFor = connectionFor;
+    }
 
     public Customers(int customerId, String name, String password) {
         this.customerId = customerId;
@@ -30,8 +37,6 @@ public class Customers {
         this.email = email;
         this.password = password;
     }
-
-
 
     public Customers(int customerId, String name) {
         this.customerId = customerId;
@@ -46,6 +51,22 @@ public class Customers {
         this.address = address;
         this.isRequired = isRequired;
         this.numberChoice = numberChoice;
+    }
+
+    public String getLoginPin() {
+        return loginPin;
+    }
+
+    public void setLoginPin(String loginPin) {
+        this.loginPin = loginPin;
+    }
+
+    public String getConnectionFor() {
+        return connectionFor;
+    }
+
+    public void setConnectionFor(String connectionFor) {
+        this.connectionFor = connectionFor;
     }
 
     public String getBbPlan() {

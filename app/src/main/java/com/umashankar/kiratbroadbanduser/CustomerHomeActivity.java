@@ -38,7 +38,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.umashankar.kiratbroadbanduser.HelperClass.PhpLink;
-import com.umashankar.kiratbroadbanduser.ModelClass.Customers;
+import com.umashankar.kiratbroadbanduser.ModelClass.Authentication;
 import com.umashankar.kiratbroadbanduser.SharedPreferencesClass.SharedPrefUserLogin;
 import com.umashankar.kiratbroadbanduser.databinding.ActivityCustomerHomeBinding;
 
@@ -54,7 +54,7 @@ public class CustomerHomeActivity extends AppCompatActivity {
     private static final String CHANNEL_ID = "101";
     private ProgressDialog progressDialog;
 
-    Customers customers;
+    Authentication customers;
     String customerId;
     private ConstraintLayout notifCount;
 
@@ -85,23 +85,27 @@ public class CustomerHomeActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
-
         customers = SharedPrefUserLogin.getInstance(this).getUser();
-        customerId = String.valueOf(customers.getLandline());
+        customerId = String.valueOf(customers.getCustomerLandline());
 
         View headerView = navigationView.getHeaderView(0);
         TextView navUsername = (TextView) headerView.findViewById(R.id.navUsername);
         TextView navUserEmail = (TextView) headerView.findViewById(R.id.navUserEmail);
-        navUsername.setText(customers.getName());
-        navUserEmail.setText("Landline: "+customers.getLandline());
+
+        navUsername.setText(customers.getCustomerName());
 
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Please Wait..");
         progressDialog.setCanceledOnTouchOutside(false);
 
-        //Popup Notification
-        createNotificationChannel();
-        getToken();
+        if (customers.getConnType().equalsIgnoreCase("bsnl")) {
+            navUserEmail.setText("Landline: " + customers.getCustomerLandline());
+            //Popup Notification
+            createNotificationChannel();
+            uploadUserToken();
+        }else {
+            navUserEmail.setText(customers.getCustomerEmail());
+        }
 
     }
 
@@ -116,7 +120,7 @@ public class CustomerHomeActivity extends AppCompatActivity {
             notificationManager.createNotificationChannel(channel);
         }
     }
-    private void getToken() {
+    private void uploadUserToken() {
         FirebaseMessaging.getInstance().getToken().addOnCompleteListener(new OnCompleteListener<String>() {
             @Override
             public void onComplete(@NonNull Task<String> task) {
@@ -190,6 +194,11 @@ public class CustomerHomeActivity extends AppCompatActivity {
         i.putExtra("reportView", "userView");
         startActivity(i);
     }
+    public void Payment_Recharge(MenuItem item){
+        Intent i = new Intent(CustomerHomeActivity.this, ViewAllReportActivity.class);
+        i.putExtra("reportView", "userView");
+        startActivity(i);
+    }
     public void ContactUs(MenuItem item){
         startActivity(new Intent(CustomerHomeActivity.this, ContactUsActivity.class));
     }
@@ -224,7 +233,7 @@ public class CustomerHomeActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 SharedPrefUserLogin.getInstance(getApplicationContext()).logout();
-                Intent intent = new Intent(CustomerHomeActivity.this, LoginActivity.class);
+                Intent intent = new Intent(CustomerHomeActivity.this, AuthOptionsActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 intent.putExtra("LOGOUT", true);
                 startActivity(intent);

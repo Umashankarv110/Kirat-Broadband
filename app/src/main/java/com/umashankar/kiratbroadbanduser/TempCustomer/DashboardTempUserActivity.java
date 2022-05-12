@@ -3,6 +3,7 @@ package com.umashankar.kiratbroadbanduser.TempCustomer;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
@@ -18,12 +19,12 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 import com.google.android.material.snackbar.Snackbar;
-import com.umashankar.kiratbroadbanduser.LoginActivity;
+import com.umashankar.kiratbroadbanduser.AuthOptionsActivity;
 import com.umashankar.kiratbroadbanduser.ModelClass.Customers;
-import com.umashankar.kiratbroadbanduser.ProfileActivity;
 import com.umashankar.kiratbroadbanduser.R;
 import com.umashankar.kiratbroadbanduser.SharedPreferencesClass.SharedPrefTempUserLogin;
 import com.umashankar.kiratbroadbanduser.UpiPayment;
@@ -39,6 +40,9 @@ public class DashboardTempUserActivity extends AppCompatActivity {
     Customers customers;
     String intentAction = "";
 
+    private ConstraintLayout paymentLayout;
+    private TextView tvPayText;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,13 +53,37 @@ public class DashboardTempUserActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("User Dashboard");
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
 
+        paymentLayout = findViewById(R.id.paymentLayout);
+        tvPayText = findViewById(R.id.tvPayText);
+
         customers = SharedPrefTempUserLogin.getInstance(this).getUser();
+        Log.i("connectioFor", customers.getConnectionFor());
+        if (customers.getConnectionFor().equalsIgnoreCase("bsnl")){
+            BSNLActions();
+        }if (customers.getConnectionFor().equalsIgnoreCase("railwire")){
+            RailWireActions();
+        }
 
 
     }
 
+    private void BSNLActions() {
+        paymentLayout.setVisibility(View.GONE);
+    }
+
+    private void RailWireActions() {
+        paymentLayout.setVisibility(View.VISIBLE);
+        tvPayText.setText("Recharge \n(रिचार्ज)");
+        paymentLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), RailWirePaymentActivity.class));
+            }
+        });
+    }
+
     public void newCustomer(View view) {
-        startActivity(new Intent(getApplicationContext(), NewCustomerActivity.class));
+        startActivity(new Intent(getApplicationContext(), PersonalDetailsActivity.class));
         Animatoo.animateSlideLeft(this);
     }
 
@@ -76,7 +104,7 @@ public class DashboardTempUserActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 SharedPrefTempUserLogin.getInstance(getApplicationContext()).logout();
-                Intent intent = new Intent(DashboardTempUserActivity.this, LoginActivity.class);
+                Intent intent = new Intent(DashboardTempUserActivity.this, AuthOptionsActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 intent.putExtra("LOGOUT", true);
                 startActivity(intent);
@@ -193,7 +221,7 @@ public class DashboardTempUserActivity extends AppCompatActivity {
     }
 
     public void Profile(MenuItem item) {
-        Intent intent = new Intent(DashboardTempUserActivity.this, ProfileActivity.class);
+        Intent intent = new Intent(DashboardTempUserActivity.this, com.umashankar.kiratbroadbanduser.ProfileActivity.class);
         intent.putExtra("type", "TempUser");
         startActivity(intent);
     }

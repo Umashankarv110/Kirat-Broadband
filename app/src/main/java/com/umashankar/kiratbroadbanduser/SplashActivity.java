@@ -27,7 +27,7 @@ public class SplashActivity extends AppCompatActivity {
         imageView.startAnimation(animation);
         textView.startAnimation(animation);
         linearLayout.startAnimation(animation);
-        final Intent i = new Intent(this,LoginActivity.class);
+        final Intent i = new Intent(this, AuthOptionsActivity.class);
 
         Thread thread = new Thread(){
             @Override

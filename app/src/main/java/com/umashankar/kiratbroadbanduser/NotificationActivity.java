@@ -33,7 +33,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.umashankar.kiratbroadbanduser.AdapterClass.NotificationAdapter;
 import com.umashankar.kiratbroadbanduser.HelperClass.PhpLink;
-import com.umashankar.kiratbroadbanduser.ModelClass.Customers;
+import com.umashankar.kiratbroadbanduser.ModelClass.Authentication;
 import com.umashankar.kiratbroadbanduser.ModelClass.Notifications;
 import com.umashankar.kiratbroadbanduser.SharedPreferencesClass.SharedPrefUserLogin;
 
@@ -61,7 +61,7 @@ public class NotificationActivity extends AppCompatActivity {
     private String currentDate, currentTime,pId,pName;
     private ProgressDialog pd;
 
-    Customers customers;
+    Authentication customers;
     String customerId;
     SwipeRefreshLayout pullToRefresh;
 
@@ -95,7 +95,7 @@ public class NotificationActivity extends AppCompatActivity {
         currentTime = time.format(calendar.getTime());
 
         customers = SharedPrefUserLogin.getInstance(this).getUser();
-        customerId = String.valueOf(customers.getLandline());
+        customerId = String.valueOf(customers.getCustomerLandline());
 
         noMsgLayout = findViewById(R.id.noMsgLayout);
         msgLayout = findViewById(R.id.msgLayout);

@@ -13,6 +13,12 @@
             android:onClick="ComplaintStatus"
             android:icon="@drawable/ic_view_report"
             android:title="@string/menu_complainStatus" />
+        <item
+            android:id="@+id/nav_payment"
+            android:onClick="Payment_Recharge"
+            android:icon="@drawable/ic_payment"
+            android:visible="false"
+            android:title="Recharge" />
     </group>
 
     <item android:title="Communicate">

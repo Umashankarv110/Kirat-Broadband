@@ -27,7 +27,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.umashankar.kiratbroadbanduser.AdapterClass.ReportAdapter;
 import com.umashankar.kiratbroadbanduser.HelperClass.PhpLink;
-import com.umashankar.kiratbroadbanduser.ModelClass.Customers;
+import com.umashankar.kiratbroadbanduser.ModelClass.Authentication;
 import com.umashankar.kiratbroadbanduser.ModelClass.Report;
 import com.umashankar.kiratbroadbanduser.SharedPreferencesClass.SharedPrefUserLogin;
 
@@ -47,7 +47,7 @@ public class ViewAllReportActivity extends AppCompatActivity {
     Report report;
     TextView complaintRefresh;
 
-    Customers user;
+    Authentication user;
     ProgressDialog pd;
     String intentView="", selectedRB="";
 
@@ -86,7 +86,7 @@ public class ViewAllReportActivity extends AppCompatActivity {
     }
 
     private void getAllUserReport() {
-        Log.i("UserReport","Getting details for id:"+user.getCustomerId());
+        Log.i("UserReport","Getting details for id:"+user.getId());
         pd.show();
         StringRequest request = new StringRequest(Request.Method.POST, PhpLink.URL_USER_REPORT_DETAILS,
                 new Response.Listener<String>() {
@@ -146,7 +146,7 @@ public class ViewAllReportActivity extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> map = new HashMap<>();
-                map.put("customerId",""+user.getLandline());
+                map.put("customerId",""+user.getCustomerLandline());
                 return map;
             }
 

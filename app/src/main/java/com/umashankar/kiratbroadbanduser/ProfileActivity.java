@@ -28,6 +28,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.textfield.TextInputLayout;
 import com.umashankar.kiratbroadbanduser.HelperClass.PhpLink;
+import com.umashankar.kiratbroadbanduser.ModelClass.Authentication;
 import com.umashankar.kiratbroadbanduser.ModelClass.Customers;
 import com.umashankar.kiratbroadbanduser.SharedPreferencesClass.SharedPrefTempUserLogin;
 import com.umashankar.kiratbroadbanduser.SharedPreferencesClass.SharedPrefUserLogin;
@@ -48,6 +49,7 @@ public class ProfileActivity extends AppCompatActivity {
     TextView txtPlanName,txtPlanValue, txtBillAmt, txtWStatus,txtInstallDate;
 
     Customers user;
+    Authentication regUser;
     ProgressDialog pd;
 
     @Override
@@ -79,11 +81,6 @@ public class ProfileActivity extends AppCompatActivity {
         txtWStatus = findViewById(R.id.wStatus);
         txtInstallDate = findViewById(R.id.idate);
 
-//        txtName.getEditText().setFocusable(false);
-//        txtEmail.getEditText().setFocusable(false);
-//        txtContact.getEditText().setFocusable(false);
-//        txtLandline.getEditText().setFocusable(false);
-
         txtPlanValue.setVisibility(View.GONE);
         txtBillAmt.setVisibility(View.GONE);
         txtWStatus.setVisibility(View.GONE);
@@ -93,12 +90,24 @@ public class ProfileActivity extends AppCompatActivity {
         if (intentUserType.equalsIgnoreCase("TempUser")){
             user = SharedPrefTempUserLogin.getInstance(this).getUser();
             getTempProfileDetails();
+            if (user.getConnectionFor().equalsIgnoreCase("bsnl")){
+                txtLandline.setVisibility(View.VISIBLE);
+            }
+            if (user.getConnectionFor().equalsIgnoreCase("railwire")){
+                txtLandline.setVisibility(View.GONE);
+            }
         }else {
-            user = SharedPrefUserLogin.getInstance(this).getUser();
-            getProfileDetails();
+            regUser = SharedPrefUserLogin.getInstance(this).getUser();
+            if (regUser.getConnType().equalsIgnoreCase("bsnl")) {
+                getBSNLProfileDetails();
+            }else {
+                txtLandline.setHint("Username (उपयोगकर्ता नाम)");
+                getRailWireProfileDetails();
+            }
         }
 
     }
+
 
     private void getTempProfileDetails() {
         pd.show();
@@ -221,10 +230,10 @@ public class ProfileActivity extends AppCompatActivity {
 
     }
 
-    private void getProfileDetails() {
-        Log.i("UserReport","Getting.........."+user.getCustomerId());
+    private void getBSNLProfileDetails() {
+        Log.i("BSNLUserReport","Getting.........."+regUser.getId());
         pd.show();
-        StringRequest request = new StringRequest(Request.Method.POST, PhpLink.URL_USER_PROFILE,
+        StringRequest request = new StringRequest(Request.Method.POST, PhpLink.URL_RailWire_USER,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -255,11 +264,20 @@ public class ProfileActivity extends AppCompatActivity {
                                     if(!planName.equalsIgnoreCase("")){
                                         txtPlanName.setText("Plan Name: "+planName);
                                         txtPlanValue.setText("Plan Value: "+planValue+"/-");
-                                        txtBillAmt.setText("Bill Amount: "+billAmt+"/-");
                                         txtWStatus.setText("Working Status: "+workingStatus);
-                                        txtInstallDate.setText("Installation Date: "+installDate);
+                                        if (regUser.getConnType().equalsIgnoreCase("bsnl")){
+                                            txtLandline.setVisibility(View.VISIBLE);
+                                            txtBillAmt.setVisibility(View.VISIBLE);
+                                            txtBillAmt.setText("Bill Amount: "+billAmt+"/-");
+                                            txtInstallDate.setText("Installation Date: "+installDate);
+                                        }
+                                        if (regUser.getConnType().equalsIgnoreCase("railwire")){
+                                            txtLandline.setVisibility(View.GONE);
+                                            txtBillAmt.setVisibility(View.GONE);
+                                            txtBillAmt.setText("Bill Amount: "+billAmt+"/-");
+                                            txtInstallDate.setText("Validity Date: "+installDate);
+                                        }
                                         txtPlanValue.setVisibility(View.VISIBLE);
-                                        txtBillAmt.setVisibility(View.VISIBLE);
                                         txtWStatus.setVisibility(View.VISIBLE);
                                         txtInstallDate.setVisibility(View.VISIBLE);
                                     }else {
@@ -295,7 +313,7 @@ public class ProfileActivity extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> map = new HashMap<>();
-                map.put("customerId",""+user.getLandline());
+                map.put("customerId",""+regUser.getCustomerLandline());
                 return map;
             }
 
@@ -304,21 +322,83 @@ public class ProfileActivity extends AppCompatActivity {
         rQeue.add(request);
 
     }
+    private void getRailWireProfileDetails()  {
+        Log.i("RailWireUser",regUser.getCustomerLandline());
+        pd.show();
+        StringRequest request = new StringRequest(Request.Method.POST, PhpLink.URL_RailWire_USER,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Log.i("profileResponce",response);
+                        if (response.equalsIgnoreCase("0")){
+                            pd.dismiss();
+                            Toast.makeText(ProfileActivity.this, "Invalid Credentials", Toast.LENGTH_SHORT).show();
+                        }else {
+                            try {
+                                JSONObject object = new JSONObject(response);
+//                                int Id = object.getInt("id");
+                                String oltName = object.getString("oltName");
+                                String cafNumber = object.getString("cafNumber");
+                                String name = object.getString("customerName");
+                                String mobile = object.getString("mobileNumber");
+                                String email = object.getString("email");
+                                String landline = object.getString("username");
+                                String planName = object.getString("planName");
+                                String railwireRecharge = object.getString("railwireRecharge");
+                                String kiratAmount = object.getString("kiratAmount");
+                                String lastRechargeDateTime = object.getString("lastRechargeDateTime");
+                                String rechargeEndDate = object.getString("rechargeEndDate");
+                                String deviceName = object.getString("deviceName");
+                                String deviceSerialNumber = object.getString("deviceSerialNumber");
+                                String model = object.getString("model");
 
+                                txtName.getEditText().setText(name);
+                                txtContact.getEditText().setText(mobile);
+                                txtEmail.getEditText().setText(email);
+                                txtLandline.getEditText().setText(landline);
 
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        // Inflate the menu; this adds items to the action bar if it is present.
-//        getMenuInflater().inflate(R.menu.profile, menu);
-//        return true;
-//    }
+                                pd.dismiss();
+                                if(!planName.equalsIgnoreCase("")){
+                                    txtPlanValue.setVisibility(View.VISIBLE);
+                                    txtWStatus.setVisibility(View.VISIBLE);
+                                    txtInstallDate.setVisibility(View.VISIBLE);
+                                }else {
+                                    txtPlanName.setText("No Active Plan");
+                                    txtPlanValue.setVisibility(View.GONE);
+                                    txtBillAmt.setVisibility(View.GONE);
+                                    txtWStatus.setVisibility(View.GONE);
+                                    txtInstallDate.setVisibility(View.GONE);
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                pd.dismiss();
+                String message = null;
+                if (volleyError instanceof NetworkError || volleyError instanceof AuthFailureError || volleyError instanceof NoConnectionError || volleyError instanceof TimeoutError) {
+                    Toast.makeText(getApplicationContext(), "No Internet Connection", Toast.LENGTH_SHORT).show();
+                } else if (volleyError instanceof ServerError) {
+                    message = "The server could not be found. Please try again later";
+                    Toast.makeText(getApplicationContext(), ""+message, Toast.LENGTH_SHORT).show();
+                }
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> map = new HashMap<>();
+                map.put("username",regUser.getCustomerLandline());
+                map.put("fetchType","profile");
+                return map;
+            }
 
-    public void EditProfile(MenuItem item) {
-        txtName.getEditText().setFocusable(true);
-        txtEmail.getEditText().setFocusable(true);
-        txtContact.getEditText().setFocusable(true);
-        txtLandline.getEditText().setFocusable(true);
-        btnSubmit.setVisibility(View.VISIBLE);
+        };
+        RequestQueue rQeue = Volley.newRequestQueue(ProfileActivity.this);
+        rQeue.add(request);
+
     }
 
     @Override

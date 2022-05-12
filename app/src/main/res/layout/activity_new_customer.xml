@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TempCustomer.NewCustomerActivity">
+    tools:context=".TempCustomer.PersonalDetailsActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
@@ -101,6 +101,15 @@
             android:layout_marginTop="14dp"/>
 
 
+        <ImageView
+            android:id="@+id/profileImage"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:background="@drawable/box"
+            android:padding="4dp"
+            android:layout_marginTop="14dp"
+            android:src="@drawable/ic_camera_24"
+            android:scaleType="center" />
 
         <Button
             android:id="@+id/custmerBtn"

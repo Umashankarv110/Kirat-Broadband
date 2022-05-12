@@ -1,12 +1,16 @@
 package com.umashankar.kiratbroadbanduser;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -20,16 +24,18 @@ import com.google.android.material.textfield.TextInputLayout;
 import com.umashankar.kiratbroadbanduser.HelperClass.PhpLink;
 import com.umashankar.kiratbroadbanduser.ModelClass.Customers;
 import com.umashankar.kiratbroadbanduser.SharedPreferencesClass.SharedPrefTempUserLogin;
-import com.umashankar.kiratbroadbanduser.TempCustomer.NewCustomerActivity;
+import com.umashankar.kiratbroadbanduser.TempCustomer.PersonalDetailsActivity;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class RegistrationActivity extends AppCompatActivity {
-
-    Button btnRegister;
+    ConstraintLayout railWireBtn, bsnlBtn;
     TextInputLayout txtName, txtDigit, txtContact;
     String Name, FourDigit, Contact;
+    String selectConnectionType="";
+    TextView selectCType;
+    ImageView ctypeEdit,layoutClose;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +45,59 @@ public class RegistrationActivity extends AppCompatActivity {
         txtName = findViewById(R.id.nameET);
         txtDigit = findViewById(R.id.digitET);
         txtContact = findViewById(R.id.mobileET);
+        selectCType = findViewById(R.id.selectCType);
+        ctypeEdit = findViewById(R.id.ctypeEdit);
+
+        ctypeEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                connectionType();
+            }
+        });
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        connectionType();
+    }
+
+    private void connectionType() {
+        Dialog dialog = new Dialog(RegistrationActivity.this);
+        dialog.setContentView(R.layout.layout_connection_type);
+        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        dialog.setCancelable(false);
+        dialog.show();
+
+        railWireBtn = dialog.findViewById(R.id.btn_railwire);
+        bsnlBtn = dialog.findViewById(R.id.btn_bsnl);
+        layoutClose = dialog.findViewById(R.id.layoutClose);
+
+        railWireBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                selectConnectionType = "RailWire";
+                selectCType.setText("Connection Type: "+selectConnectionType);
+                dialog.dismiss();
+            }
+        });
+
+        bsnlBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                selectConnectionType = "BSNL";
+                selectCType.setText("Connection Type: "+selectConnectionType);
+                dialog.dismiss();
+            }
+        });
+
+        layoutClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                selectConnectionType = "";
+                dialog.dismiss();
+            }
+        });
     }
 
     public void userRegistration(View view) {
@@ -46,7 +105,9 @@ public class RegistrationActivity extends AppCompatActivity {
         FourDigit = txtDigit.getEditText().getText().toString().trim();
         Contact = txtContact.getEditText().getText().toString().trim();
 
-        if (Name.isEmpty()){
+        if (selectConnectionType.isEmpty()){
+            Toast.makeText(this, "Select ConnectionType", Toast.LENGTH_SHORT).show();
+        }else if (Name.isEmpty()){
             Toast.makeText(this, "Enter Name", Toast.LENGTH_SHORT).show();
         }else if (Contact.isEmpty()){
             Toast.makeText(getApplicationContext(),"Enter Mobile Number", Toast.LENGTH_SHORT).show();
@@ -61,9 +122,9 @@ public class RegistrationActivity extends AppCompatActivity {
                         public void onResponse(String response) {
                             Log.i("SignUpResponce", response);
                             if (response.equalsIgnoreCase("Customer Inserted")) {
-                                Customers user = new Customers(001, Name,Contact,FourDigit);
+                                Customers user = new Customers(001, Name,Contact,FourDigit, selectConnectionType.toLowerCase());
                                 SharedPrefTempUserLogin.getInstance(getApplicationContext()).userLogin(user);
-                                Intent i = new Intent(RegistrationActivity.this, NewCustomerActivity.class);
+                                Intent i = new Intent(RegistrationActivity.this, PersonalDetailsActivity.class);
                                 i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                 startActivity(i);
                                 Toast.makeText(RegistrationActivity.this, "Successfully Registered...", Toast.LENGTH_SHORT).show();
@@ -83,6 +144,7 @@ public class RegistrationActivity extends AppCompatActivity {
                     Map<String, String> map = new HashMap<>();
                     map.put("name", Name);
                     map.put("mobile", Contact);
+                    map.put("connectionFor", selectConnectionType.toLowerCase());
                     map.put("loginPin", FourDigit);
                     map.put("queryType", "Registration");
                     return map;
@@ -96,6 +158,6 @@ public class RegistrationActivity extends AppCompatActivity {
     }
 
     public void userLogin(View view) {
-        startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+        startActivity(new Intent(getApplicationContext(), AuthBSNLActivity.class));
     }
 }

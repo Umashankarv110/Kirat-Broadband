@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 
-import com.umashankar.kiratbroadbanduser.LoginActivity;
+import com.umashankar.kiratbroadbanduser.AuthBSNLActivity;
 import com.umashankar.kiratbroadbanduser.ModelClass.Customers;
 
 public class SharedPrefTempUserLogin {
@@ -14,6 +14,7 @@ public class SharedPrefTempUserLogin {
     private static final String KEY_NAME = "userName";
     private static final String KEY_MOBILE = "userMobile";
     private static final String KEY_LOGIN_PIN = "userLoginPin";
+    private static final String KEY_ConnType = "userConnType";
     private static final String KEY_ID = "userLoginId";
 
     private static SharedPrefTempUserLogin mInstance;
@@ -38,7 +39,8 @@ public class SharedPrefTempUserLogin {
         editor.putInt(KEY_ID, users.getCustomerId());
         editor.putString(KEY_NAME, users.getName());
         editor.putString(KEY_MOBILE, users.getMobile());
-        editor.putString(KEY_LOGIN_PIN, users.getLandline());
+        editor.putString(KEY_LOGIN_PIN, users.getLoginPin());
+        editor.putString(KEY_ConnType, users.getConnectionFor());
         editor.apply();
     }
 
@@ -55,7 +57,8 @@ public class SharedPrefTempUserLogin {
                 sharedPreferences.getInt(KEY_ID, -1),
                 sharedPreferences.getString(KEY_NAME, null),
                 sharedPreferences.getString(KEY_MOBILE, null),
-                sharedPreferences.getString(KEY_LOGIN_PIN, null)
+                sharedPreferences.getString(KEY_LOGIN_PIN, null),
+                sharedPreferences.getString(KEY_ConnType, null)
         );
     }
 
@@ -65,6 +68,6 @@ public class SharedPrefTempUserLogin {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.clear();
         editor.apply();
-        mCtx.startActivity(new Intent(mCtx, LoginActivity.class));
+        mCtx.startActivity(new Intent(mCtx, AuthBSNLActivity.class));
     }
 }

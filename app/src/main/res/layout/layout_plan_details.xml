@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="4dp"
+    android:layout_margin="4dp"
     android:background="@drawable/slider_bg">
 
     <TextView
@@ -13,7 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
         android:layout_marginEnd="8dp"
-        android:text="Plan Name: ABC"
+        android:text="Plan Name: ABC Plan"
         android:textSize="16sp"
         app:layout_constraintEnd_toStartOf="@+id/tvPayAmt"
         app:layout_constraintStart_toStartOf="parent"
@@ -26,7 +27,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
         android:layout_marginEnd="8dp"
-        android:text="Plan Amount: ₹449"
+        android:text="Plan Amount: ₹1"
         android:textSize="16sp"
         app:layout_constraintEnd_toStartOf="@+id/tvPayAmt"
         app:layout_constraintStart_toStartOf="parent"
@@ -56,7 +57,7 @@
             android:gravity="center"
             android:paddingLeft="4dp"
             android:paddingRight="4dp"
-            android:text="₹529.82"
+            android:text="1.00"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/tv_gst"
             app:layout_constraintTop_toTopOf="parent" />
@@ -66,7 +67,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
-            android:text="₹519.82"
+            android:text="₹1.00"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/tvIncludeAmt"
             app:layout_constraintTop_toTopOf="parent" />
@@ -98,7 +99,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
-        android:text="Security Amount: ₹500"
+        android:text="Security Amount: ₹0"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout3" />
@@ -112,7 +113,8 @@
         android:background="@drawable/box"
         android:gravity="center"
         android:padding="4dp"
-        android:text="₹519.82"
+        android:text="1.00"
+        android:minWidth="70dp"
         android:textColor="@color/black"
         android:textSize="16sp"
         android:textStyle="bold"
@@ -124,7 +126,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
-        android:text="Plan Speed: "
+        android:text="Plan Speed: 100 Mb/s"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
