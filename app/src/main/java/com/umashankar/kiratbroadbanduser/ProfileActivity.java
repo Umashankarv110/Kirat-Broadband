@@ -233,7 +233,7 @@ public class ProfileActivity extends AppCompatActivity {
     private void getBSNLProfileDetails() {
         Log.i("BSNLUserReport","Getting.........."+regUser.getId());
         pd.show();
-        StringRequest request = new StringRequest(Request.Method.POST, PhpLink.URL_RailWire_USER,
+        StringRequest request = new StringRequest(Request.Method.POST, PhpLink.URL_USER_PROFILE,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {

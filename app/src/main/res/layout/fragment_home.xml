@@ -253,8 +253,7 @@
             android:layout_gravity="center"
             android:layout_margin="5dp"
             android:layout_weight="1"
-            android:background="@drawable/button"
-            android:onClick="newPayment">
+            android:background="@drawable/button">
 
             <ImageView
                 android:id="@+id/ivPay"

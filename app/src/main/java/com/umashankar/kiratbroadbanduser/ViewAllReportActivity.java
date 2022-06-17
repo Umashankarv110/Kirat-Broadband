@@ -113,7 +113,8 @@ public class ViewAllReportActivity extends AppCompatActivity {
                                         String resolveTime = object.getString("resolveTime");
                                         String assignUserId = object.getString("reportAssignId");
                                         String resolveReason = object.getString("resolveReason");
-                                        report = new Report(Id, status, name, date, time, reason, assignUserId, reportAssignTo, assignUserContact, resolveDate, resolveTime, resolveReason);
+                                        String inProgressReason = object.getString("inProgressReason");
+                                        report = new Report(Id, status, name, date, time, reason, assignUserId, reportAssignTo, assignUserContact, resolveDate, resolveTime, resolveReason, inProgressReason);
                                     }else {
                                         report = new Report(Id, status, name, date, time, reason);
                                     }

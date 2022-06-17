@@ -10,6 +10,7 @@ import androidx.core.app.NotificationManagerCompat;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 import com.umashankar.kiratbroadbanduser.CustomerHomeActivity;
+import com.umashankar.kiratbroadbanduser.NotificationActivity;
 import com.umashankar.kiratbroadbanduser.R;
 
 public class MyFirebaseServices extends FirebaseMessagingService {
@@ -27,7 +28,7 @@ public class MyFirebaseServices extends FirebaseMessagingService {
     }
 
     private void showNotification(String title, String message){
-        Intent intent = new Intent(this, CustomerHomeActivity.class);
+        Intent intent = new Intent(this, NotificationActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
 
@@ -40,7 +41,6 @@ public class MyFirebaseServices extends FirebaseMessagingService {
                 .setAutoCancel(true);
 
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
-
         notificationManager.notify(1, builder.build());
     }
 }

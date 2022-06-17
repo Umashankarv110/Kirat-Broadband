@@ -54,7 +54,12 @@ public class ReportAdapter extends ArrayAdapter<Report> {
             tv_report_assign.setVisibility(View.VISIBLE);
             tv_report_datetime.setVisibility(View.GONE);
             textView2.setVisibility(View.GONE);
-            tv_resolveReason.setVisibility(View.GONE);
+            if (arrayListReport.get(position).getInProgressReason().equalsIgnoreCase("")){
+                tv_resolveReason.setVisibility(View.GONE);
+            }else{
+                tv_resolveReason.setVisibility(View.VISIBLE);
+                tv_resolveReason.setText("In-Progress Reason: "+arrayListReport.get(position).getInProgressReason());
+            }
             if (arrayListReport.get(position).getReportAssignTo().equalsIgnoreCase("Unassigned")){
                 tv_report_assign.setVisibility(View.GONE);
             }else{
@@ -74,6 +79,7 @@ public class ReportAdapter extends ArrayAdapter<Report> {
                 tv_resolveReason.setVisibility(View.GONE);
             }else{
                 tv_resolveReason.setVisibility(View.VISIBLE);
+                tv_resolveReason.setText("Resolve Reason: "+arrayListReport.get(position).getResolveReason());
             }
         }
         tv_report_id.setText("KB_"+arrayListReport.get(position).getReportId());
@@ -82,7 +88,6 @@ public class ReportAdapter extends ArrayAdapter<Report> {
         tv_report_date.setText(": "+arrayListReport.get(position).getReportDate());
         tv_report_time.setText(": "+arrayListReport.get(position).getReportTime());
         tv_report_reason.setText(": "+arrayListReport.get(position).getReportReason());
-        tv_resolveReason.setText("Resolve Reason: "+arrayListReport.get(position).getResolveReason());
         tv_report_datetime.setText(arrayListReport.get(position).getResolveDate()+" | "+arrayListReport.get(position).getResolveTime());
         tv_report_assign.setText("Complaint Assigned to : "+arrayListReport.get(position).getReportAssignTo()+" | "+arrayListReport.get(position).getAssignUserContact());
 

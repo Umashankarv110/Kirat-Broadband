@@ -3,16 +3,31 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/ANDROID STUDIO/Android Studio/KiratBroadband/KB User/KiratBroadbandUser/app/src/main/res/drawable-v24/box.xml" value="0.2545" />
+        <entry key="..\:/ANDROID STUDIO/Android Studio/KiratBroadband/KB User/KiratBroadbandUser/app/src/main/res/drawable/badge_count.xml" value="0.2545" />
+        <entry key="..\:/ANDROID STUDIO/Android Studio/KiratBroadband/KB User/KiratBroadbandUser/app/src/main/res/layout/activity_auth_bsnl.xml" value="0.2526041666666667" />
+        <entry key="..\:/ANDROID STUDIO/Android Studio/KiratBroadband/KB User/KiratBroadbandUser/app/src/main/res/layout/activity_auth_options.xml" value="0.2526041666666667" />
+        <entry key="..\:/ANDROID STUDIO/Android Studio/KiratBroadband/KB User/KiratBroadbandUser/app/src/main/res/layout/activity_bsnlpayment.xml" value="0.25" />
+        <entry key="..\:/ANDROID STUDIO/Android Studio/KiratBroadband/KB User/KiratBroadbandUser/app/src/main/res/layout/activity_new_customer.xml" value="0.2526041666666667" />
+        <entry key="..\:/ANDROID STUDIO/Android Studio/KiratBroadband/KB User/KiratBroadbandUser/app/src/main/res/layout/activity_payment.xml" value="0.2526041666666667" />
+        <entry key="..\:/ANDROID STUDIO/Android Studio/KiratBroadband/KB User/KiratBroadbandUser/app/src/main/res/layout/activity_rail_wire_payment.xml" value="0.19519927536231885" />
+        <entry key="..\:/ANDROID STUDIO/Android Studio/KiratBroadband/KB User/KiratBroadbandUser/app/src/main/res/layout/activity_upi_payment.xml" value="0.2526041666666667" />
+        <entry key="..\:/ANDROID STUDIO/Android Studio/KiratBroadband/KB User/KiratBroadbandUser/app/src/main/res/layout/fragment_home.xml" value="0.25" />
+        <entry key="..\:/ANDROID STUDIO/Android Studio/KiratBroadband/KB User/KiratBroadbandUser/app/src/main/res/layout/layout_msg.xml" value="0.2526041666666667" />
+        <entry key="..\:/ANDROID STUDIO/Android Studio/KiratBroadband/KB User/KiratBroadbandUser/app/src/main/res/layout/layout_plan_details.xml" value="0.13385416666666666" />
         <entry key="..\:/Users/kirat/Documents/ANDROID/KiratBroadband/KB User/KiratBroadbandUser/app/src/main/res/layout/activity_auth_options.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/kirat/Documents/ANDROID/KiratBroadband/KB User/KiratBroadbandUser/app/src/main/res/layout/activity_auth_rail_wire.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/kirat/Documents/ANDROID/KiratBroadband/KB User/KiratBroadbandUser/app/src/main/res/layout/activity_document_collection.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/kirat/Documents/ANDROID/KiratBroadband/KB User/KiratBroadbandUser/app/src/main/res/layout/activity_new_customer.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/kirat/Documents/ANDROID/KiratBroadband/KB User/KiratBroadbandUser/app/src/main/res/layout/activity_payment.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/kirat/Documents/ANDROID/KiratBroadband/KB User/KiratBroadbandUser/app/src/main/res/layout/activity_profile.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/kirat/Documents/ANDROID/KiratBroadband/KB User/KiratBroadbandUser/app/src/main/res/layout/activity_rail_wire_payment.xml" value="0.5" />
         <entry key="..\:/Users/kirat/Documents/ANDROID/KiratBroadband/KB User/KiratBroadbandUser/app/src/main/res/layout/activity_upi_payment.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/kirat/Documents/ANDROID/KiratBroadband/KB User/KiratBroadbandUser/app/src/main/res/layout/content_about_us.xml" value="0.22" />
         <entry key="..\:/Users/kirat/Documents/ANDROID/KiratBroadband/KB User/KiratBroadbandUser/app/src/main/res/layout/fragment_home.xml" value="0.25" />
         <entry key="..\:/Users/kirat/Documents/ANDROID/KiratBroadband/KB User/KiratBroadbandUser/app/src/main/res/layout/fragment_second.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/kirat/Documents/ANDROID/KiratBroadband/KB User/KiratBroadbandUser/app/src/main/res/layout/fragment_slideshow.xml" value="0.1" />
+        <entry key="..\:/Users/kirat/Documents/ANDROID/KiratBroadband/KB User/KiratBroadbandUser/app/src/main/res/layout/layout_all_plan.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/kirat/Documents/ANDROID/KiratBroadband/KB User/KiratBroadbandUser/app/src/main/res/layout/layout_connection_type.xml" value="0.20102564102564102" />
         <entry key="..\:/Users/kirat/Documents/ANDROID/KiratBroadband/KB User/KiratBroadbandUser/app/src/main/res/layout/layout_connectivity.xml" value="0.20102564102564102" />
         <entry key="..\:/Users/kirat/Documents/ANDROID/KiratBroadband/KB User/KiratBroadbandUser/app/src/main/res/layout/layout_module.xml" value="0.20102564102564102" />

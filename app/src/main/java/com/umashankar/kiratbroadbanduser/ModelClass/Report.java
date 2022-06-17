@@ -3,7 +3,7 @@ package com.umashankar.kiratbroadbanduser.ModelClass;
 public class Report {
     int reportId;
     String reportStatus, reportName, reportDate, reportTime, reportReason, assignUserId, reportAssignTo, assignUserContact, resolveDate, resolveTime;
-    String resolveReason;
+    String resolveReason, inProgressReason;
 
     public Report() {
     }
@@ -17,7 +17,7 @@ public class Report {
         this.reportReason = reportReason;
     }
 
-    public Report(int reportId, String reportStatus, String reportName, String reportDate, String reportTime, String reportReason, String assignUserId, String reportAssignTo, String assignUserContact, String resolveDate, String resolveTime, String resolveReason) {
+    public Report(int reportId, String reportStatus, String reportName, String reportDate, String reportTime, String reportReason, String assignUserId, String reportAssignTo, String assignUserContact, String resolveDate, String resolveTime, String resolveReason, String inProgressReason) {
         this.reportId = reportId;
         this.reportStatus = reportStatus;
         this.reportName = reportName;
@@ -30,6 +30,7 @@ public class Report {
         this.resolveTime = resolveTime;
         this.assignUserId = assignUserId;
         this.resolveReason = resolveReason;
+        this.inProgressReason = inProgressReason;
     }
 
     public String getAssignUserContact() {
@@ -42,6 +43,14 @@ public class Report {
 
     public String getResolveReason() {
         return resolveReason;
+    }
+
+    public String getInProgressReason() {
+        return inProgressReason;
+    }
+
+    public void setInProgressReason(String inProgressReason) {
+        this.inProgressReason = inProgressReason;
     }
 
     public void setResolveReason(String resolveReason) {

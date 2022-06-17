@@ -18,6 +18,9 @@
         android:theme="@style/Theme.KiratBroadband"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".BSNLPaymentActivity"
+            android:exported="false" />
+        <activity
             android:name=".AuthRailWireActivity"
             android:exported="false" />
         <activity
@@ -94,19 +97,18 @@
             </intent-filter>
         </activity>
 
-    <receiver
-        android:name="com.razorpay.RzpTokenReceiver"
-        android:exported="true">
-        <intent-filter>
-            <action android:name="rzp.device_token.share" />
-        </intent-filter>
-    </receiver>
+        <receiver
+            android:name="com.razorpay.RzpTokenReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="rzp.device_token.share" />
+            </intent-filter>
+        </receiver>
 
-    <meta-data
-        android:name="com.razorpay.ApiKey"
-        android:exported="true"
-        android:value="rzp_live_0zK5Wp6XB5A8Kj" />
-
-</application>
+        <meta-data
+            android:name="com.razorpay.ApiKey"
+            android:exported="true"
+            android:value="rzp_live_0zK5Wp6XB5A8Kj" />
+    </application>
 
 </manifest>
