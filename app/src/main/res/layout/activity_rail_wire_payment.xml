@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".TempCustomer.RailWirePaymentActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/railWirePay_Toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+            app:titleTextColor="@color/colorAccent" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:padding="4dp">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/customAmt"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:hint="Enter Recharge Amount"
+            app:layout_constraintEnd_toStartOf="@+id/payBtn"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <Button
+            android:id="@+id/payBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:text="Pay Now"
+            android:textAllCaps="false"
+            app:layout_constraintBottom_toBottomOf="@+id/customAmt"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/customAmt" />
+
+
+<!--        <View-->
+<!--            android:id="@+id/divider5"-->
+<!--            android:layout_width="175dp"-->
+<!--            android:layout_height="2dp"-->
+<!--            android:background="?android:attr/listDivider"-->
+<!--            app:layout_constraintBottom_toBottomOf="@+id/textView21"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="@+id/textView21" />-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/textView21"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_margin="8dp"-->
+<!--            android:text="OR"-->
+<!--            android:textStyle="bold"-->
+<!--            app:layout_constraintEnd_toStartOf="@+id/view"-->
+<!--            app:layout_constraintStart_toEndOf="@+id/divider5"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/customAmt" />-->
+
+<!--        <View-->
+<!--            android:id="@+id/view"-->
+<!--            android:layout_width="170dp"-->
+<!--            android:layout_height="2dp"-->
+<!--            android:background="?android:attr/listDivider"-->
+<!--            app:layout_constraintBottom_toBottomOf="@+id/textView21"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="@+id/textView21" />-->
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+<!--    <TextView-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_margin="8dp"-->
+<!--        android:text="Select RailWire Recharge"-->
+<!--        android:textStyle="bold"-->
+<!--        android:textSize="16dp"-->
+<!--        app:layout_constraintEnd_toStartOf="@+id/view"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/customAmt" />-->
+
+
+<!--    <include layout="@layout/layout_plan_details"/>-->
+
+</LinearLayout>
